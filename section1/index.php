@@ -42,6 +42,14 @@ $test_1 = 123;
 $test_2 = 456;
 $test_3 = $test_1 . $test_2;// .(コンマ)でくっつけることができる
 echo $test_3;//結果 123456
+
+//定数...変わらない数、文字
+/* constのルール
+一回しか宣言できない。
+大文字で宣言する。
+*/
+const MAX = 10;//const ... constant
+echo MAX;//結果 10
 ?>
 
 </body>
