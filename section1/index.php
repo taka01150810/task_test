@@ -77,6 +77,67 @@ $array_2 = [
 ];
 echo $array_2[0][1];//結果 青
 echo $array_2[1][1];//結果 紫
+
+$array_member = [
+    //'key' => 'value',
+    'name' => 'レブロン',
+    'height' => 203,
+    'hobby' => 'バスケ',
+];
+echo $array_member['name'];//結果 レブロン
+echo $array_member['hobby'];//結果 バスケ
+
+
+$array_member_2 = [
+    'レブロン' => [
+        'height' => 203,
+        'team' => 'レイカーズ',
+    ],
+    'KD' => [
+        'height' => 206,
+        'team' => 'ネッツ',
+    ],
+];
+echo $array_member_2['レブロン']['team'];//結果 レイカーズ
+echo $array_member_2['KD']['team'];//結果 ネッツ
+
+$array_member_3 = [
+    'レイカーズ' => [
+        'レブロン' => [
+            'height' => 203,
+            'pre_team' => 'キャブス'
+        ],
+        'AD' => [
+            'height' => 208,
+            'pre_team' => 'ペリカンズ'
+        ],
+    ],
+    'ネッツ' => [
+        'KD' => [
+            'height' => 206,
+            'pre_team' => 'ウォリアーズ'
+        ],
+        'カイリー' => [
+            'height' => 191,
+            'pre_team' => 'セルティックス'
+        ],
+    ],
+];
+echo $array_member_3['レイカーズ']['レブロン']['pre_team'];//結果 キャブス
+echo $array_member_3['ネッツ']['カイリー']['height'];//結果 191
+/*
+!== null や empty, issetなどはよく使う
+== は使わない === を使う
+++でインクリメント(1ずつ増える)
+*/
+$test_1 = 10;
+$test_2 = 3;
+$test_3 = $test_1 - $test_2;
+echo $test_3;//結果 7
+$test_3 = $test_1 / $test_2;
+echo $test_3;//結果 3.3333333333333
+$test_3 = $test_1 % $test_2;
+echo $test_3;//結果 1
 ?>
 
 </body>
