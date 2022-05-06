@@ -50,6 +50,33 @@ echo $test_3;//結果 123456
 */
 const MAX = 10;//const ... constant
 echo MAX;//結果 10
+
+//配列1行
+$array_1 = [1,2,3];
+echo $array_1;//結果 警告文 + Array
+echo $array_1[1];//結果 2
+var_dump($array_1);//結果 array(3) { [0]=> int(1) [1]=> int(2) [2]=> int(3) }
+
+echo '<pre>';//preで見やすくなる
+var_dump($array_1);
+echo '</pre>';
+/*
+array(3) {
+  [0]=>
+  int(1)
+  [1]=>
+  int(2)
+  [2]=>
+  int(3)
+}
+*/
+
+$array_2 = [
+    ['赤','青','黄'],
+    ['緑','紫','黒']
+];
+echo $array_2[0][1];//結果 青
+echo $array_2[1][1];//結果 紫
 ?>
 
 </body>
