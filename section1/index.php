@@ -138,6 +138,107 @@ $test_3 = $test_1 / $test_2;
 echo $test_3;//結果 3.3333333333333
 $test_3 = $test_1 % $test_2;
 echo $test_3;//結果 1
+/*
+if(条件){
+    条件が真なら実行
+}
+*/
+$height = 160;
+if($height == 160){
+    echo '身長は'.$height.'です。';//結果 身長は160です。
+}
+/*
+==...一致
+===...型も一致
+*/
+$height = '160';
+if($height == 160){
+    echo '身長は'.$height.'です。';
+}//結果 何も表示されない
+
+/*
+if(条件){
+    条件が真なら実行
+}else{
+    　条件が偽なら実行
+}
+*/
+$height = 165;
+if($height == 160){
+    echo '身長は'.$height.'です。';
+} else {
+    echo '身長は'.$height.'ではありません。';
+}//結果 身長は165ではありません。
+
+$signal = 'yellow';
+if($signal === 'red'){
+    echo '止まれ';
+} elseif($signal === 'yellow'){
+    echo '一旦中止';
+}else{
+    echo '進む';
+}
+//結果 一旦中止
+
+$signal = 'blue';
+$speed = 200;
+if($signal === 'blue'){
+    if($speed >= 80){//if文の中にif文を入れることをネストと呼ぶ
+        echo 'スピード違反';
+    }
+}
+//結果 スピード違反
+
+//elseはなるべく使わない
+$height = '170';
+if($height >= 160){
+    echo '身長は160cmより高いです。';
+}
+if($height == 160){
+    echo '身長は160cmです。';
+}
+if($height <= 160){
+    echo '身長は160cmより低いです。。';
+}
+//結果 身長は160cmより高いです。
+
+if($height !== 160){
+    echo '身長は160cmではありません';
+}
+//結果 身長は160cmではありません
+
+//データが入っているかどうかを判別(isset,empty,is_null)
+$test = '';
+if(empty($test)){
+    echo '変数は空です';
+}
+//結果 変数は空です
+if(!empty($test)){
+    echo '変数は空ではありません';
+}
+//結果 何もなし
+
+//ANDとOR
+$signal_1 = 'red';
+$signal_2 = 'blue';
+if($signal_1 === 'red' && $signal_2 === 'blue'){
+    echo '赤と青です';
+}
+//結果 赤と青です
+
+if($signal_1 === 'red' || $signal_2 === 'yellow'){
+    echo '赤もしくは青です';
+}
+//結果 赤もしくは青です
+
+//三項演算子
+/*
+条件 ? 真 : 偽
+*/
+$math = 80;
+$comment = $math > 80 ? 'good' : 'not good';
+echo $comment;
+//結果 not good
 ?>
 
 </body>
