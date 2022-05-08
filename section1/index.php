@@ -239,6 +239,45 @@ $math = 80;
 $comment = $math > 80 ? 'good' : 'not good';
 echo $comment;
 //結果 not good
+
+//複数の値
+$members = [
+    //'key' => 'value',
+    'name' => 'レブロン',
+    'height' => 203,
+    'hobby' => 'バスケ',
+];
+
+//バリューのみ表示
+foreach($members as $member){
+    echo $member;
+}
+//結果 レブロン203バスケ
+
+//キーとバリューそれぞれ表示
+foreach($members as $key => $value){
+    echo $key.'は'.$value.'です';
+}
+//結果 nameはレブロンですheightは203ですhobbyはバスケです
+
+//多段階の配列
+$members_2 = [
+    'レブロン' => [
+        'height' => 203,
+        'team' => 'レイカーズ',
+    ],
+    'KD' => [
+        'height' => 206,
+        'team' => 'ネッツ',
+    ],
+];
+
+foreach($members_2 as $member_1){
+    foreach($member_1 as $member){
+        echo $member;
+    }
+}
+//結果 203レイカーズ206ネッツ
 ?>
 
 </body>
