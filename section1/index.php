@@ -313,6 +313,44 @@ while($j < 5){
 do{echo $j;}
 while($j < 5);
 //結果 5
+
+/*
+switch
+できればif文の方がいい
+
+switch(変数){
+    case 1;
+    case 2;
+    case 3;
+}
+
+*/
+$data = 1;
+switch($data){
+    case 1:
+        echo '1です';
+    break;
+    case 2:
+        echo '2です';
+    break;
+    case 3:
+        echo '3です';
+    break;
+    default:
+    echo '1〜3ではありません';
+}
+//結果 1です
+
+//switchの場合 == なので下記と同じ意味
+if($data == 1){
+    echo '1です';
+}elseif($data == 2){
+    echo '2です';
+}elseif($data == 3){
+    echo '3です';
+}else{
+    echo '1〜3ではありません';
+}
 ?>
 
 </body>
