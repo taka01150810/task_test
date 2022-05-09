@@ -409,6 +409,78 @@ $total = sumPrice(3,5);
 echo $total;
 //結果 8
 
+//関数リファレンスに組み込み関数は書いてある
+//文字列の長さを調べる組み込み関数
+$text = 'abc';
+echo strlen($text);
+//結果 3
+
+$text = 'アイウエオ';
+echo strlen($text);
+//結果 15
+/*
+マルチバイトによる影響
+日本語 UTF-8では日本語は一文字あたり3〜6バイト
+*/
+echo mb_strlen($text);
+//結果 5
+
+//文字列の置き換え
+$str = '文字列を置換します';
+echo str_replace('置換','ちかん',$str);
+//結果 文字列をちかんします
+
+//指定文字列で分割
+$str_2 = '指定文字列で、分割します';
+echo '<pre>';
+var_dump(explode('、', $str_2));
+echo '</pre>';
+/* 結果
+array(2) {
+  [0]=>
+  string(18) "指定文字列で"
+  [1]=>
+  string(15) "分割します"
+}
+*/
+
+//正規表現
+/*
+文字かどうか、数字かどうか、郵便番号かどうかなどを確認するときに使う
+*/
+$str_3 = '特定の文字列が含まれているか確認する';
+echo preg_match('/文字列/',$str_3);
+//結果 1
+
+//指定文字列から文字列を取得する
+echo substr('abcde', 1);
+//結果 bcde
+
+echo substr('あいうえお', 1);
+//結果 ��いうえ
+
+echo mb_substr('あいうえお', 2);
+//結果 うえお
+
+//配列に配列を追加する
+$array = ['りんご','みかん'];
+array_push($array, 'ぶどう', 'なし');
+echo '<pre>';
+var_dump($array);
+echo '</pre>';
+/* 結果
+array(4) {
+  [0]=>
+  string(9) "りんご"
+  [1]=>
+  string(9) "みかん"
+  [2]=>
+  string(9) "ぶどう"
+  [3]=>
+  string(6) "なし"
+}
+*/
+
 ?>
 
 </body>
