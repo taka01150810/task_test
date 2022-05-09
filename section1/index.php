@@ -481,6 +481,22 @@ array(4) {
 }
 */
 
+//組み込み関数を使ってユーザー定義関数を作る
+/* 関数の名前
+camelCase checkPostalCode()
+snakeCase check_postal_code()
+*/
+$postalCode = '123-4567';
+function checkPostalCode($str){
+    $replaced = str_replace('-', '', $str);
+    $length = strlen($replaced);
+    if($length === 7){
+        return true;
+    }
+    return false;
+}
+var_dump(checkPostalCode($postalCode));
+//結果 bool(true)
 ?>
 
 </body>
