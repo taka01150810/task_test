@@ -497,6 +497,34 @@ function checkPostalCode($str){
 }
 var_dump(checkPostalCode($postalCode));
 //結果 bool(true)
+
+$globalVariable = "グローバル変数です";//関数の外はグローバル
+
+function checkScope(){
+ $localVariable = "ローカル変数です"; //関数内はローカル変数
+ echo $localVariable;
+}
+echo $globalVariable;
+//結果 グローバル変数です
+echo $localVariable;
+//結果 何もなし(警告文)
+
+function checkScope_2(){
+    $localVariable = "ローカル変数です"; //関数内はローカル変数
+    //echo $globalVariable;
+    ///ローカル変数の中にグローバル変数は使えない
+    global $globalVariable;
+    //上記だと使える
+    echo $globalVariable;
+}
+checkScope_2();
+//結果 グローバル変数です
+//しかし実際はあまり使われず、下記の書き方の方がいい
+function checkScope_3($str){
+    echo $str;
+}
+checkScope_2($globalVariable);
+//結果 グローバル変数です
 ?>
 
 </body>
