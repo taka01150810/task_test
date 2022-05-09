@@ -366,13 +366,49 @@ if($data == 1){
 */
 
 /*
-function 関数名 (引数)
-{
-～処理～
-return 戻り値;
+function 関数名 (引数){
+    ～処理～
+    return 戻り値;
 }
+
 関数名は名詞か動詞+名詞
+引数の変数は処理の中に入れる
 */
+//インプット(引数) なし
+//アウトプット(戻り値) なし
+function test(){
+    echo 'テスト';
+}
+test();
+//結果 テスト
+
+//インプット(引数) あり
+//アウトプット(戻り値) なし
+function getComment($string){
+    echo $string;
+}
+getComment('コメント');
+//結果 コメント
+
+//インプット(引数) なし
+//アウトプット(戻り値) あり
+function getNumberOfComment(){
+    return 5;
+}
+//上記だけだと結果 なし
+echo getNumberOfComment();
+//結果 5
+
+//インプット(引数)2つあり
+//アウトプット(戻り値)あり
+function sumPrice($int1, $int2){
+    $int3 = $int1 + $int2;
+    return $int3;
+}
+$total = sumPrice(3,5);
+echo $total;
+//結果 8
+
 ?>
 
 </body>
