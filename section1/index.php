@@ -525,6 +525,23 @@ function checkScope_3($str){
 }
 checkScope_2($globalVariable);
 //結果 グローバル変数です
+
+/*
+require ... エラーが起きたら処理が中断
+require_once ... 一回だけ呼び出し
+include ... エラーが起きたら警告はされるが処理は行われる
+include_once ... 一回だけ呼び出し
+*/
+require ('common.php');
+echo $commonVariable;
+//結果 共通の変数です
+commonTest();
+//結果 外部ファイルの関数です
+
+echo __DIR__;
+//結果 /Applications/MAMP/htdocs/PHP1/section1
+echo __FILE__;
+//結果 /Applications/MAMP/htdocs/PHP1/section1/index.php
 ?>
 
 </body>
