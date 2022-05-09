@@ -1,42 +1,13 @@
 <?php
-if(!empty($_GET)){
-    //$_ ... スーパーグローバル変数。9種類ある
-    echo '<pre>';
-    var_dump($_GET);
-    echo '</pre>';
+$pageFlag = 0;
+if(!empty($_POST['btn_confirm'])){
+    $pageFlag = 1;
 }
-/* 結果 URLに表示される
-array(2) {
-  ["your_name"]=>
-  string(9) "あああ"
-  ["team"]=>
-  array(2) {
-    [0]=>
-    string(9) "ネッツ"
-    [1]=>
-    string(12) "マイアミ"
-  }
+
+if(!empty($_POST['btn_submit'])){
+    $pageFlag = 2;
 }
-*/
-if(!empty($_POST)){
-    //$_ ... スーパーグローバル変数。9種類ある
-    echo '<pre>';
-    var_dump($_POST);
-    echo '</pre>';
-}
-/* URLは表示されない
-array(2) {
-  ["your_name"]=>
-  string(12) "レブロン"
-  ["team"]=>
-  array(2) {
-    [0]=>
-    string(15) "レイカーズ"
-    [1]=>
-    string(12) "マイアミ"
-  }
-}
-*/
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -47,28 +18,30 @@ array(2) {
     <title>Document</title>
 </head>
 <body>
-    <!-- 
-        GET...URLに表示される(検索条件など)
-        POST...見られてはいけないNGなデータはこっち 
-    -->
-    <form method="GET" action="input.php">
-        氏名
-        <input type="text" name="your_name">
-        <input type="submit" value="送信する">
-        <br>
-        <input type="checkbox" name="team[]" value="レイカーズ">レイカーズ
-        <input type="checkbox" name="team[]" value="ネッツ">ネッツ
-        <input type="checkbox" name="team[]" value="マイアミ">マイアミ
-    </form>
-
+    <?php if($pageFlag === 0): ?>
     <form method="POST" action="input.php">
         氏名
-        <input type="text" name="your_name">
-        <input type="submit" value="送信する">
-        <br>
-        <input type="checkbox" name="team[]" value="レイカーズ">レイカーズ
-        <input type="checkbox" name="team[]" value="ネッツ">ネッツ
-        <input type="checkbox" name="team[]" value="マイアミ">マイアミ
+        <input type="text" name="your_name"><br>
+        メールアドレス
+        <input type="email" name="email">
+        <input type="submit" name="btn_confirm" value="確認する">
     </form>
+    <?php endif; ?>
+
+    <?php if($pageFlag === 1): ?>
+    <form method="POST" action="input.php">
+        氏名
+        <?php echo $_POST['your_name']; ?><br>
+        メールアドレス
+        <?php echo $_POST['email']; ?><br>
+        <input type="submit" name="btn_submit" value="送信する">
+        <input type="hidden" name="your_name" value="<?php echo $_POST['your_name']; ?>">
+        <input type="hidden" name="email" value="<?php echo $_POST['email']; ?>">
+    </form>
+    <?php endif; ?>
+
+    <?php if($pageFlag === 2): ?>
+        送信が完了しました
+    <?php endif; ?>
 </body>
 </html>
