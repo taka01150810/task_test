@@ -28,14 +28,18 @@ function h($str){
 }
 
 ?>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
 <body>
     <?php if($pageFlag === 0): ?>
         <?php
@@ -56,25 +60,38 @@ function h($str){
         ?>
         <?php echo '</ul>'; ?>
     <?php endif; ?>
-    <form method="POST" action="input.php">
-        氏名
-        <input type="text" name="your_name" value="<?php if(!empty($_POST['your_name'])){ echo h(($_POST['your_name'])); } ?>"><br>
-        メールアドレス
-        <input type="email" name="email" value="<?php if(!empty($_POST['email'])){ echo h($_POST['email']); } ?>"><br>
-        ホームページ
-        <input type="url" name="url" value="<?php if(!empty($_POST['url'])){ echo h($_POST['url']); } ?>"><br>
-        性別
-        <!-- checkedで戻った時も選択されているようになる -->
-        <input type="radio" name="gender" value="0"
-        <?php if(!empty($_POST['gender']) && ($_POST['gender']) === '0'){ echo 'checked'; }?>
-        >
-        男性
-        <input type="radio" name="gender" value="1"
-        <?php if(!empty($_POST['gender']) && ($_POST['gender']) === '1'){ echo 'checked'; }?>
-        >
-        女性<br>
-        年齢
-        <select name="age">
+    <div class="container">
+        <div class="row">
+            <!-- グリッドシステムが特徴。画面を12分割で考え、画面幅によって表示を変える -->
+            <div class="col-md-6">
+                <form method="POST" action="input.php">
+                <div class="form-group">
+                    <label for="your_name">氏名</label>
+                    <input type="text" class="form-control" id="your_name" name="your_name" value="<?php if(!empty($_POST['your_name'])){ echo h(($_POST['your_name'])); } ?>"><br>
+                </div>
+        <div class="form-group">
+            <label for="email">メールアドレス</label>
+            <input type="email" class="form-control" id="email" name="email" value="<?php if(!empty($_POST['email'])){ echo h($_POST['email']); } ?>"><br>
+        </div>
+        <div class="form-group">
+            <label for="url">ホームページ</label>
+            <input type="url" class="form-control" id="url" name="url" value="<?php if(!empty($_POST['url'])){ echo h($_POST['url']); } ?>"><br>
+        </div>
+        <div class="form-check form-check-inline">
+            性別
+            <!-- checkedで戻った時も選択されているようになる -->
+            <input class="form-check-input" type="radio" name="gender" id="gender1" value="0"
+            <?php if(!empty($_POST['gender']) && ($_POST['gender']) === '0'){ echo 'checked'; }?>
+            >
+            <label class="form-check-label">男性</label>
+            <input class="form-check-input" type="radio" name="gender" id="gender2" value="1"
+            <?php if(!empty($_POST['gender']) && ($_POST['gender']) === '1'){ echo 'checked'; }?>
+            >
+            <label class="form-check-label">女性</label>
+        </div><br>
+        <div class="form-group">
+        <label for="age">年齢</label>
+        <select name="age" class="form-control" id="age">
             <!-- selectedで戻った時も選択されているようになる -->
             <option value="1" selected>〜19歳</option>
             <option value="2">20歳〜29歳</option>
@@ -83,15 +100,23 @@ function h($str){
             <option value="5">50歳〜59歳</option>
             <option value="6">60歳〜</option>
         </select><br>
-        お問い合わせ内容
-        <textarea name="contact">
-            <?php if(!empty($_POST['contact'])){ echo h($_POST['contact']); } ?>
-        </textarea><br>
-        <input type="checkbox" name="caution" value="1">
-        注意事項のチェック<br>
-        <input type="submit" name="btn_confirm" value="確認する">
+        </div>
+        <div class="form-group">
+            <label for="contact">お問い合わせ内容</label>
+            <textarea class="form-control" id="contact" row="3" name="contact">
+                <?php if(!empty($_POST['contact'])){ echo h($_POST['contact']); } ?>
+            </textarea><br>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="caution" name="caution" value="1">
+            <label class="form-check-label" for="caution">注意事項のチェック</label><br>
+        </div>
+        <input class="btn btn-info"  type="submit" name="btn_confirm" value="確認する">
         <input type="hidden" name="csrf" value="<?php echo $token; ?>">
     </form>
+    </div>
+    </div>
+    </div>
     <?php endif; ?>
 
     <?php if($pageFlag === 1): ?>
@@ -139,5 +164,10 @@ function h($str){
         <!-- 完了画面が表示されるタイミングでCSRFのTokenを外れる -->
         <?php endif; ?>
     <?php endif; ?>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
