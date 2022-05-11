@@ -43,3 +43,19 @@ foreach($allData as $lineData){
     echo $lines[2].'<br>';
 }
 //結果 タイトル1,本文1,日付1,カテゴリ1 タイトル2,本文2,日付2,カテゴリ2 タイトル3,本文3,日付3,カテゴリ3 CSV形式
+
+//開く
+$contents = fopen($contactFile, 'a+');
+//排他ロック
+$addText = "\n".'1行追記';
+//読込/書込/追記
+fwrite($contents, $addText);
+//閉じる
+fclose($contents);
+/* 結果
+タイトル1,本文1,日付1,カテゴリ1 
+タイトル2,本文2,日付2,カテゴリ2 
+タイトル3,本文3,日付3,カテゴリ3
+CSV形式
+1行追記
+*/
