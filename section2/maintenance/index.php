@@ -80,4 +80,20 @@ array(1) {
 }
 */
 
+/*
+トランザクション まとまって処理 beginTransaction, commit, rollback
+ex)銀行
+残高を確認->Aさんから引き落とし->Bさんに振込
+*/
+$pdo->beginTransaction();
+
+try{
+    $stmt = $pdo->prepare($sql);//②実行したいSQL文をセットする。
+    $stmt->bindValue('id',1, PDO::PARAM_INT);//③SQLに対してパラメーターをセットする。【任意】
+    $stmt->execute();//④実際にSQLを実行する。
+
+    $pdo->commit();//SQL処理
+}catch(PDOException $e){
+    $pod->rollback();//更新のキャンセル
+}
 ?>
