@@ -158,6 +158,10 @@ function h($str){
     <?php endif; ?>
 
     <?php if($pageFlag === 2): ?>
+        <?php 
+        require 'maintenance/insert.php';
+        insertContact($_POST);
+        ?>
         <?php if($_POST['csrf'] === $_SESSION['csrfToken']): ?>
         送信が完了しました
         <?php unset($_SESSION['csrfToken']); ?>
