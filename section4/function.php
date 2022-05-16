@@ -32,4 +32,21 @@ typeTest('配列文字');
 
 // typeTest(['配列文字']);
 //結果 引数にstringと指定しているのに配列なのでエラー
+
+//可変変数
+function combine(string ...$name):string//string ...$name ...引数を複数設定。:string ...戻り値の型
+{
+    $combinedName = '';
+    for($i = 0; $i < count($name); $i++){
+        $combinedName .= $name[$i];
+        if($i != count($name) - 1){
+            $combinedName .= '・';
+        }
+    }
+    return $combinedName;
+}
+
+$variableLength = combine('テスト1','テスト2','テスト3');
+echo $variableLength;
+//結果 テスト1・テスト2・テスト3
 ?>
