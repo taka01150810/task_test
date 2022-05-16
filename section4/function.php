@@ -49,4 +49,18 @@ function combine(string ...$name):string//string ...$name ...引数を複数設�
 $variableLength = combine('テスト1','テスト2','テスト3');
 echo $variableLength;
 //結果 テスト1・テスト2・テスト3
+
+//コールバック関数(引数に関数を入れる)
+function combineSpace(string $firstName, string $lastName):string
+{
+    return $lastName . '' . $firstName;
+}
+$nameParam = ['名前', '苗字'];
+function useCombine(array $name, callable $func)
+{
+    $concatName = $func(...$name);
+    print($func. '関数での結合結果:'.$concatName. '<br>');
+}
+useCombine($nameParam, 'combineSpace');
+//結果 combineSpace関数での結合結果:苗字名前
 ?>
