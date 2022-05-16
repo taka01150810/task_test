@@ -63,4 +63,47 @@ function useCombine(array $name, callable $func)
 }
 useCombine($nameParam, 'combineSpace');
 //結果 combineSpace関数での結合結果:苗字名前
+
+//商品クラス
+class Product
+{
+    private $price = 1000;
+
+    //価格取得
+    public function getPrice()
+    {
+        return $this->price;
+    }
+}
+
+//カートクラス
+class Cart
+{
+    private $product = [];
+    //商品追加
+    public function addItem($product)
+    {
+        $this->products[] = $product;
+    }
+    //商品取得
+    public function getItem($index)
+    {
+        return $this->products[$index];
+    }
+}
+$cart = new Cart;
+//引数にインスタンス
+$cart->addItem(new Product());
+
+//通常(それぞれメソッド実行)
+$gotItem = $cart->getItem(0);
+$price = $gotItem->getPrice();
+echo '通常メソッド'.$price;
+//結果 通常メソッド1000
+
+//メソッドチェーン
+//メソッドの後にインスタンスのメソッドをチェック
+$price = $cart->getItem(0)->getPrice();
+echo 'メソッドチェーン'.$price;
+//結果 メソッドチェーン1000
 ?>
