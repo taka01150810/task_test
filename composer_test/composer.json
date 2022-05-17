@@ -1,0 +1,15 @@
+{
+    "name": "miyanakayoshiaki/composer_test",
+    "autoload": {
+        "psr-4": {
+            "App\\" : "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "taka01150810",
+            "email": "taka01150810@gmail.com"
+        }
+    ],
+    "require": {}
+}
