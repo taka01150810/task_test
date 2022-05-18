@@ -11,5 +11,7 @@
             "email": "taka01150810@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "nesbot/carbon": "^2.58"
+    }
 }
