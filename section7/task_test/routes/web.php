@@ -11,6 +11,10 @@
 |
 */
 
+use App\Controllers\TestController;
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('tests/test', 'TestController@index');
