@@ -13,5 +13,6 @@ class TestController extends Controller
         //dd($values);//dd = die + var_dump
 
         return view('tests.test', compact('values'));
+        //view dd などLaravelが用意しているのがヘルパ関数
     }
 }
