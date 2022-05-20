@@ -109,6 +109,104 @@ class TestController extends Controller
         }
         }
         */
+        /*
+        DIというのは簡単に言うとクラスの内部でインスタンス生成(new)するのではなく、外部で用意して注入してね と言う事です。
+        めっちゃ噛み砕いて言うとクラスの中でnewすんなってこと。
+        ユーザーの携帯を鳴らすという簡単な処理を実行している処理で言えば
+
+        class User
+        {
+            protected $phone;
+        
+            public function __construct()
+            {
+                $this->phone = new Phone();
+            }
+        
+            public function UserCallPhone()
+            {
+                $this->phone->call();
+            }
+        }
+        
+        class Phone
+        {
+            public function call()
+            {
+                return "プルプル...";
+            }
+        }
+
+        上記を
+
+        class User
+        {
+            protected $phone;
+        
+            public function __construct(Phone $phone)
+            {
+                $this->phone = $phone;
+            }
+        
+            public function UserCallPhone()
+            {
+                $this->phone->call();
+            }
+        }
+        
+        class Phone
+        {
+            public function call()
+            {
+                return "プルプル...";
+            }
+        }
+        
+        // ここでPhoneクラスをインスタンス化
+        $phone = new Phone();
+        // Phoneクラスのインスタンスを引数に渡す
+        $user = new User($phone);
+
+        */
+        /*
+        例によって、簡単に説明すると依存関係を解決するために行なっていた外部からの注入(上記DI参考)を
+        まとめて担ってくれるのがサービスコンテナです。
+        サービス => インスタンス化(new)
+        コンテナ => 入れ物
+
+        class User
+        {
+            protected $phone;
+
+            //Phoneクラスのインスタンス(new)をサービスコンテナが代わりに作って渡してくれている。
+            public function __construct()
+            {
+                //bind()にクラス名を渡してそのインスタンスの生成方法をサービスコンテナに登録する
+                app()->bind('Phone', function(){
+                    return new Phone();
+                });
+
+                //指定されたインスタンスをサービスコンテナが生成したインスタンスを取得
+                $this->phone = app()->make('Phone');
+            }
+
+            // Phoneクラスのインスタンスを$phoneに渡している
+            public function UserCallPhone()
+            {
+                $this->phone->call();
+            }
+        }
+
+        class Phone
+        {
+            public function call()
+            {
+                return "プルプルプル...";
+            }
+        }
+
+        $user = new User();
+        */
 
         return view('tests.test', compact('values'));
         //view dd などLaravelが用意しているのがヘルパ関数
