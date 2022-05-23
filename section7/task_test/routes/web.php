@@ -19,8 +19,15 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
-Route::resource('contacts', ContactFormController::class);
+//Route::get('contact/index', 'ContactFormController@index');
 
-//Auth::routes();
+//prefixでまとめる。middleware=>authで認証
+Route::group(['prefix' => 'contact', 'middleware' => 'auth'], function(){
+    Route::get('index', 'ContactFormController@index')->name('contact.index');
+});
+
+// Route::resource('contacts', ContactFormController::class);
+
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
