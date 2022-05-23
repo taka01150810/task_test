@@ -35,7 +35,20 @@ class ContactFormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        今までは$_POSTでPOSTデータを取得していた
+        laravelではRequestでデータを取得できる
+        */
+        $your_name = $request->input('your_name');
+        $title = $request->input('title');
+        $email = $request->input('email');
+        $url = $request->input('url');
+        $gender = $request->input('gender');
+        $age = $request->input('age');
+        $contact = $request->input('contact');
+
+        dd($your_name);
+        //結果 your_nameで入力した値
     }
 
     /**
