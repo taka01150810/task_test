@@ -13,6 +13,7 @@ class CreateContactFormsTable extends Migration
      */
     public function up()
     {
+        //新規作成の時はcreate
         Schema::create('contact_forms', function (Blueprint $table) {
             $table->bigIncrements('id');
             //氏名、メールアドレス、url、性別、年齢、お問い合わせ内容
