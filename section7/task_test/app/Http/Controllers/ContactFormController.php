@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ContactForm;
+use Illuminate\Support\Facades\DB;
 
 //php artisan make:controller ContactFormController --resource  で追加
 class ContactFormController extends Controller
@@ -15,7 +16,153 @@ class ContactFormController extends Controller
      */
     public function index()
     {
-        return view('contact.index');
+        //エロクアント ORマッパー
+        // $contacts = ContactForm::all();
+        // var_dump($contacts);
+        /* 結果
+        object(Illuminate\Database\Eloquent\Collection)#1373 (1) {
+        ["items":protected]=>
+        array(1) {
+            [0]=>
+            object(App\Models\ContactForm)#1372 (26) {
+            ["connection":protected]=>
+            string(5) "mysql"
+            ["table":protected]=>
+            string(13) "contact_forms"
+            ["primaryKey":protected]=>
+            string(2) "id"
+            ["keyType":protected]=>
+            string(3) "int"
+            ["incrementing"]=>
+            bool(true)
+            ["with":protected]=>
+            array(0) {
+            }
+            ["withCount":protected]=>
+            array(0) {
+            }
+            ["perPage":protected]=>
+            int(15)
+            ["exists"]=>
+            bool(true)
+            ["wasRecentlyCreated"]=>
+            bool(false)
+            ["attributes":protected]=>
+            array(10) {
+                ["id"]=>
+                int(1)
+                ["your_name"]=>
+                string(12) "レブロン"
+                ["title"]=>
+                string(12) "タイトル"
+                ["email"]=>
+                string(22) "taka01150810@gmail.com"
+                ["url"]=>
+                string(23) "https://www.google.com/"
+                ["gender"]=>
+                int(0)
+                ["age"]=>
+                int(3)
+                ["contact"]=>
+                string(9) "いいい"
+                ["created_at"]=>
+                string(19) "2022-05-23 13:31:58"
+                ["updated_at"]=>
+                string(19) "2022-05-23 13:31:58"
+            }
+            ["original":protected]=>
+            array(10) {
+                ["id"]=>
+                int(1)
+                ["your_name"]=>
+                string(12) "レブロン"
+                ["title"]=>
+                string(12) "タイトル"
+                ["email"]=>
+                string(22) "taka01150810@gmail.com"
+                ["url"]=>
+                string(23) "https://www.google.com/"
+                ["gender"]=>
+                int(0)
+                ["age"]=>
+                int(3)
+                ["contact"]=>
+                string(9) "いいい"
+                ["created_at"]=>
+                string(19) "2022-05-23 13:31:58"
+                ["updated_at"]=>
+                string(19) "2022-05-23 13:31:58"
+            }
+            ["changes":protected]=>
+            array(0) {
+            }
+            ["casts":protected]=>
+            array(0) {
+            }
+            ["dates":protected]=>
+            array(0) {
+            }
+            ["dateFormat":protected]=>
+            NULL
+            ["appends":protected]=>
+            array(0) {
+            }
+            ["dispatchesEvents":protected]=>
+            array(0) {
+            }
+            ["observables":protected]=>
+            array(0) {
+            }
+            ["relations":protected]=>
+            array(0) {
+            }
+            ["touches":protected]=>
+            array(0) {
+            }
+            ["timestamps"]=>
+            bool(true)
+            ["hidden":protected]=>
+            array(0) {
+            }
+            ["visible":protected]=>
+            array(0) {
+            }
+            ["fillable":protected]=>
+            array(0) {
+            }
+            ["guarded":protected]=>
+            array(1) {
+                [0]=>
+                string(1) "*"
+            }
+            }
+        }
+        }
+
+        必要のない情報もあるのでクエリビルダで行う
+        */
+
+        //クエリビルダ
+        $contacts = DB::table('contact_forms')
+        ->select('id', 'your_name','title', 'created_at')
+        ->orderBy('created_at', 'desc')//orderByで並び替え
+        ->get();
+        // var_dump($contacts);
+        /*
+        object(Illuminate\Support\Collection)#408 (1) {
+        ["items":protected]=>
+        array(1) {
+            [0]=>
+            object(stdClass)#1285 (2) {
+            ["id"]=>
+            int(1)
+            ["your_name"]=>
+            string(12) "レブロン"
+            }
+        }
+        }
+        */
+        return view('contact.index', compact('contacts'));
     }
 
     /**
