@@ -30,15 +30,15 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
                             @foreach ($contacts as $contact)
-                            <th scope="row">{{ $contact->id }}</th>
+                            <tr>
+                            <th>{{ $contact->id }}</th>
                             <td> {{ $contact->your_name }}</td>
                             <td> {{ $contact->title }}</td>
                             <td> {{ $contact->created_at }}</td>
                             <td><a href="{{ route('contact.show', ['id' => $contact->id ]) }}">詳細を見る</a></td>
+                        </tr>
                             @endforeach
-                          </tr>
                         </tbody>
                       </table>
                 </div>
