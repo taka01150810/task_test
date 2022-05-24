@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\ContactForm;
 use Illuminate\Support\Facades\DB;
 use App\Services\CheckFormData;
+use App\Http\Requests\StoreContactForm;
 
 //php artisan make:controller ContactFormController --resource  で追加
 class ContactFormController extends Controller
@@ -182,7 +183,7 @@ class ContactFormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreContactForm $request)
     {
         //ContactFormをインスタンス化
         $contact = new ContactForm;

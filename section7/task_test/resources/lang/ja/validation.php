@@ -116,8 +116,15 @@ return [
     |
     */
 
+    //日本語に変えたい時
     'attributes' => [
         'password' => 'パスワード',
+        'email' => 'メールアドレス',
+        'caution' => '注意事項',
+        'your name' => '氏名',
+        'gender' => '性別',
+        'age' => '年齢',
+        'contact' => 'お問い合わせ'
     ],
 
 ];
