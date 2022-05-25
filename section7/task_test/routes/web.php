@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('tests/test', 'TestController@index');
 
+Route::get('shops/index', 'ShopController@index');
+
 //Route::get('contact/index', 'ContactFormController@index');
 
 //prefixでまとめる。middleware=>authで認証
