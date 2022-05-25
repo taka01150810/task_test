@@ -10,4 +10,9 @@ class Shop extends Model
     public function area(){
         return $this->belongsTo('App\Models\Area');
     }
+
+    //複数の条件を結びつける(お店と路線)
+    public function routes(){
+        return $this->belongsToMany('App\Models\Route');
+    }
 }

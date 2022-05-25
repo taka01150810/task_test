@@ -39,5 +39,37 @@ class ShopController extends Controller
         $shop = Shop::find(3)->area->name;
         var_dump($shop);
         //結果 string(6) "福岡"
+
+        //多:多
+        $shop_route = Shop::find(1)->routes()->get();
+        var_dump($shop_route);
+        /* 結果
+        array(5) {
+            ["id"]=>
+            int(1)
+            ["name"]=>
+            string(9) "山手線"
+            ["sort_no"]=>
+            int(1)
+            ["created_at"]=>
+            NULL
+            ["updated_at"]=>
+            NULL
+        }
+        array(5) {
+            ["id"]=>
+            int(2)
+            ["name"]=>
+            string(9) "横浜線"
+            ["sort_no"]=>
+            int(2)
+            ["created_at"]=>
+            NULL
+            ["updated_at"]=>
+            NULL
+        }
+
+        両方の値が取れてる
+        */ 
     }
 }
